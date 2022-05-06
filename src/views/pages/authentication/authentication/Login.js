@@ -12,7 +12,7 @@ import Logo from 'ui-component/Logo';
 
 // assets
 
-// ================================|| AUTH3 - LOGIN ||================================ //
+// ================================|| AUTH - LOGIN ||================================ //
 
 const Login = () => {
     const theme = useTheme();

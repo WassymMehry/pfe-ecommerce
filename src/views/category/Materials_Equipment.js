@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Materials_Equipment() {
     return <div>Materials_Equipment</div>;
 }
