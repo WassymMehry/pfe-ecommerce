@@ -143,25 +143,6 @@ export default function BlogPostCard({ post }) {
                     >
                         {title}
                     </TitleStyle>
-
-                    <InfoStyle>
-                        {POST_INFO.map((info, index) => (
-                            <Box
-                                key={index}
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    ml: index === 0 ? 0 : 1.5,
-                                    ...{
-                                        color: 'grey.500'
-                                    }
-                                }}
-                            >
-                                <Iconify icon={info.icon} sx={{ width: 16, height: 16, mr: 0.5 }} />
-                                <Typography variant="caption">{fShortenNumber(info.number)}</Typography>
-                            </Box>
-                        ))}
-                    </InfoStyle>
                 </CardContent>
             </Card>
         </Grid>

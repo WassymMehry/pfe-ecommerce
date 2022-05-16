@@ -19,6 +19,8 @@ const CategoryCosmeticsBeauty = Loadable(lazy(() => import('views/category/Cosme
 const CategoryTravel = Loadable(lazy(() => import('views/category/Travel')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+//Annonce routing
+const Annonce = Loadable(lazy(() => import('views/category/components/Annonce')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -73,6 +75,10 @@ const MainRoutes = {
         {
             path: '/sample-page',
             element: <SamplePage />
+        },
+        {
+            path: '/annonce/:id',
+            element: <Annonce />
         }
     ]
 };
