@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -14,6 +15,8 @@ import Transitions from 'ui-component/extended/Transitions';
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
 import { shouldForwardProp } from '@mui/system';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from 'firebase';
 
 // styles
 const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
@@ -62,48 +65,50 @@ const MobileSearch = ({ value, setValue, popupState }) => {
     const theme = useTheme();
 
     return (
-        <OutlineInputStyle
-            id="input-search-header"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="Search"
-            startAdornment={
-                <InputAdornment position="start">
-                    <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
-                </InputAdornment>
-            }
-            endAdornment={
-                <InputAdornment position="end">
-                    <ButtonBase sx={{ borderRadius: '12px' }}>
-                        <HeaderAvatarStyle variant="rounded">
-                            <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
-                        </HeaderAvatarStyle>
-                    </ButtonBase>
-                    <Box sx={{ ml: 2 }}>
+        <React.Fragment>
+            <OutlineInputStyle
+                id="input-search-header"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="Search"
+                startAdornment={
+                    <InputAdornment position="start">
+                        <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
+                    </InputAdornment>
+                }
+                endAdornment={
+                    <InputAdornment position="end">
                         <ButtonBase sx={{ borderRadius: '12px' }}>
-                            <Avatar
-                                variant="rounded"
-                                sx={{
-                                    ...theme.typography.commonAvatar,
-                                    ...theme.typography.mediumAvatar,
-                                    background: theme.palette.orange.light,
-                                    color: theme.palette.orange.dark,
-                                    '&:hover': {
-                                        background: theme.palette.orange.dark,
-                                        color: theme.palette.orange.light
-                                    }
-                                }}
-                                {...bindToggle(popupState)}
-                            >
-                                <IconX stroke={1.5} size="1.3rem" />
-                            </Avatar>
+                            <HeaderAvatarStyle variant="rounded">
+                                <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
+                            </HeaderAvatarStyle>
                         </ButtonBase>
-                    </Box>
-                </InputAdornment>
-            }
-            aria-describedby="search-helper-text"
-            inputProps={{ 'aria-label': 'weight' }}
-        />
+                        <Box sx={{ ml: 2 }}>
+                            <ButtonBase sx={{ borderRadius: '12px' }}>
+                                <Avatar
+                                    variant="rounded"
+                                    sx={{
+                                        ...theme.typography.commonAvatar,
+                                        ...theme.typography.mediumAvatar,
+                                        background: theme.palette.orange.light,
+                                        color: theme.palette.orange.dark,
+                                        '&:hover': {
+                                            background: theme.palette.orange.dark,
+                                            color: theme.palette.orange.light
+                                        }
+                                    }}
+                                    {...bindToggle(popupState)}
+                                >
+                                    <IconX stroke={1.5} size="1.3rem" />
+                                </Avatar>
+                            </ButtonBase>
+                        </Box>
+                    </InputAdornment>
+                }
+                aria-describedby="search-helper-text"
+                inputProps={{ 'aria-label': 'weight' }}
+            />
+        </React.Fragment>
     );
 };
 
@@ -118,6 +123,61 @@ MobileSearch.propTypes = {
 const SearchSection = () => {
     const theme = useTheme();
     const [value, setValue] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+
+    React.useEffect(() => {
+        console.log(value);
+
+        if (value && value.length > 0) {
+            const articleRef = collection(db, 'Articles');
+            const q = query(articleRef);
+            onSnapshot(q, (snapshot) => {
+                const results = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+
+                if (results && results.length > 0) {
+                    const filteredArray = results.map((item, i) => {
+                        if (
+                            (item && item.title && item.title.includes(value)) ||
+                            (item && item.description && item.description.includes(value))
+                        ) {
+                            return item;
+                        }
+                    });
+                    setSearchResults(filteredArray);
+                } else {
+                    setSearchResults([]);
+                }
+            });
+        } else {
+            setSearchResults([]);
+        }
+    }, [value]);
+
+    const renderResults = React.useCallback(() => {
+        return searchResults && searchResults.length > 0 ? (
+            <div
+                style={{
+                    position: 'absolute',
+                    top: '100px',
+                    left: '300px',
+                    background: 'pink',
+                    height: '100px',
+                    width: '200px',
+                    zIndex: 9999
+                }}
+            >
+                {searchResults.map((element) => (
+                    <div>
+                        <h1>{element && element.title ? element.title : ''}</h1>
+                        <h2>{element && element.description ? element.description : ''}</h2>
+                    </div>
+                ))}
+            </div>
+        ) : null;
+    }, [searchResults]);
 
     return (
         <>
@@ -184,6 +244,8 @@ const SearchSection = () => {
                     aria-describedby="search-helper-text"
                     inputProps={{ 'aria-label': 'weight' }}
                 />
+
+                {renderResults()}
             </Box>
         </>
     );

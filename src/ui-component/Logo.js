@@ -1,22 +1,14 @@
-/**
- * if you want to use image instead of <svg> uncomment following.
- *
- * import logoDark from 'assets/images/logo-dark.svg';
- * import logo from 'assets/images/logo.svg';
- *
- */
-
-// ==============================|| LOGO SVG ||============================== //
-
+import logo from 'assets/Logo.png';
+import styled from 'styled-components';
+const imgStyle = styled.img`
+    left: 10px;
+    width: auto;
+`;
 const Logo = () => {
     return (
-        /**
-         * if you want to use image instead of svg uncomment following, and comment out <svg> element.
-         *
-         * <img src={logo} alt="Berry" width="100" />
-         *
-         */
-        <div>logo</div>
+        <div>
+            <img src={logo} alt="" width={75} style={{ marginLeft: '60px', position: 'absolute', marginTop: '-30px' }}></img>
+        </div>
     );
 };
 

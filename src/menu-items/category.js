@@ -35,7 +35,7 @@ const category = {
             id: 'category-Real-estate',
             title: 'Real estate',
             type: 'item',
-            url: '/category/Real-estate',
+            url: '/Realestate',
             icon: icons.IconHome,
             breadcrumbs: false
         },
@@ -43,7 +43,7 @@ const category = {
             id: 'category-Cars',
             title: 'Cars',
             type: 'item',
-            url: '/category/Cars',
+            url: '/Cars',
             icon: icons.IconCar,
             breadcrumbs: false
         },
@@ -51,7 +51,7 @@ const category = {
             id: 'category-Vehicles',
             title: 'Vehicles',
             type: 'item',
-            url: '/category/Vehicles',
+            url: '/Vehicles',
             icon: icons.IconTruck,
             breadcrumbs: false
         },
@@ -59,7 +59,7 @@ const category = {
             id: 'category-Phones',
             title: 'Phones',
             type: 'item',
-            url: '/category/Phones',
+            url: '/Phones',
             icon: icons.IconDeviceMobile,
             breadcrumbs: false
         },
@@ -67,7 +67,7 @@ const category = {
             id: 'category-Computers-Accessories',
             title: 'Computers & Accessories',
             type: 'item',
-            url: '/category/ComputersAccessories',
+            url: '/Computers&Accessories',
             icon: icons.IconDeviceDesktop,
             breadcrumbs: false
         },
@@ -75,7 +75,7 @@ const category = {
             id: 'category-Clothings',
             title: 'Clothings',
             type: 'item',
-            url: '/category/Clothings',
+            url: '/Clothings',
             icon: icons.IconShirt,
             breadcrumbs: false
         },
@@ -83,7 +83,7 @@ const category = {
             id: 'category-Materials-Equipment',
             title: 'Materials & Equipment',
             type: 'item',
-            url: '/category/MaterialsEquipment',
+            url: '/Materials&Equipment',
             icon: icons.IconScissors,
             breadcrumbs: false
         },
@@ -91,7 +91,7 @@ const category = {
             id: 'category-Cosmetics-Beauty',
             title: 'Cosmetics & Beauty',
             type: 'item',
-            url: '/category/CosmeticsBeauty',
+            url: '/Cosmetics&Beauty',
             icon: icons.IconHanger,
             breadcrumbs: false
         },
@@ -99,31 +99,9 @@ const category = {
             id: 'category-Travel',
             title: 'Travel',
             type: 'item',
-            url: '/category/Travel',
+            url: '/Travel',
             icon: icons.IconPlane,
             breadcrumbs: false
-        },
-        {
-            id: 'icons',
-            title: 'Icons',
-            type: 'collapse',
-            icon: icons.IconWindmill,
-            children: [
-                {
-                    id: 'tabler-icons',
-                    title: 'Tabler Icons',
-                    type: 'item',
-                    url: '/icons/tabler-icons',
-                    breadcrumbs: false
-                },
-                {
-                    id: 'material-icons',
-                    title: 'Material Icons',
-                    type: 'item',
-                    url: '/icons/material-icons',
-                    breadcrumbs: false
-                }
-            ]
         }
     ]
 };

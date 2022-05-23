@@ -5,22 +5,30 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
 // dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
+const DashboardDefault = Loadable(lazy(() => import('views/Home')));
 
 // category routing
-const CategoryRealestate = Loadable(lazy(() => import('views/category/Real_estate')));
-const CategoryCars = Loadable(lazy(() => import('views/category/Cars')));
-const CategoryVehicles = Loadable(lazy(() => import('views/category/Vehicles')));
-const CategoryPhones = Loadable(lazy(() => import('views/category/Phones')));
-const CategoryComputersAccessories = Loadable(lazy(() => import('views/category/Computers_Accessories')));
-const CategoryClothings = Loadable(lazy(() => import('views/category/Clothings')));
-const CategoryMaterialsEquipment = Loadable(lazy(() => import('views/category/Materials_Equipment')));
-const CategoryCosmeticsBeauty = Loadable(lazy(() => import('views/category/Cosmetics_Beauty')));
-const CategoryTravel = Loadable(lazy(() => import('views/category/Travel')));
+const CategoryRealestate = Loadable(lazy(() => import('views/category/Real estate/Real_estate')));
+const CategoryCars = Loadable(lazy(() => import('views/category/Cars/Cars')));
+const CategoryVehicles = Loadable(lazy(() => import('views/category/Vehicles/Vehicules')));
+const CategoryPhones = Loadable(lazy(() => import('views/category/Phones/Phones')));
+const CategoryComputersAccessories = Loadable(lazy(() => import('views/category/Computers & Accessories/Computers_Accessories')));
+const CategoryClothings = Loadable(lazy(() => import('views/category/Clothings/Clothings')));
+const CategoryMaterialsEquipment = Loadable(lazy(() => import('views/category/Materials & Equipment/Materials_Equipment')));
+const CategoryCosmeticsBeauty = Loadable(lazy(() => import('views/category/Cosmetics & Beauty/Cosmetics_Beauty')));
+const CategoryTravel = Loadable(lazy(() => import('views/category/Travel/Travel')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 //Annonce routing
-const Annonce = Loadable(lazy(() => import('views/category/components/Annonce')));
+const Cars = Loadable(lazy(() => import('views/category/Cars/Annonce')));
+const Clothings = Loadable(lazy(() => import('views/category/Clothings/Annonce')));
+const ComputersAccessories = Loadable(lazy(() => import('views/category/Computers & Accessories/Annonce')));
+const Realestate = Loadable(lazy(() => import('views/category/Real estate/Annonce')));
+const Vehicles = Loadable(lazy(() => import('views/category/Vehicles/Annonce')));
+const CosmeticsBeauty = Loadable(lazy(() => import('views/category/Cosmetics & Beauty/Annonce')));
+const MaterialsEquipment = Loadable(lazy(() => import('views/category/Materials & Equipment/Annonce')));
+const Travel = Loadable(lazy(() => import('views/category/Travel/Annonce')));
+const Phones = Loadable(lazy(() => import('views/category/Phones/Annonce')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -33,52 +41,81 @@ const MainRoutes = {
             element: <DashboardDefault />
         },
         {
-            path: '/dashboard/default',
+            path: '/home',
             element: <DashboardDefault />
         },
         {
-            path: '/category/Real-estate',
+            path: '/Realestate',
             element: <CategoryRealestate />
         },
         {
-            path: '/category/Vehicles',
+            path: '/Vehicles',
             element: <CategoryVehicles />
         },
         {
-            path: '/category/Cars',
+            path: '/Cars',
             element: <CategoryCars />
         },
         {
-            path: '/category/Phones',
+            path: '/Phones',
             element: <CategoryPhones />
         },
         {
-            path: '/category/ComputersAccessories',
+            path: '/Computers&Accessories',
             element: <CategoryComputersAccessories />
         },
         {
-            path: '/category/Clothings',
+            path: '/Clothings',
             element: <CategoryClothings />
         },
         {
-            path: '/category/MaterialsEquipment',
+            path: '/Materials&Equipment',
             element: <CategoryMaterialsEquipment />
         },
         {
-            path: '/category/CosmeticsBeauty',
+            path: '/Cosmetics&Beauty',
             element: <CategoryCosmeticsBeauty />
         },
         {
-            path: '/category/Travel',
+            path: '/Travel',
             element: <CategoryTravel />
         },
+
         {
-            path: '/sample-page',
-            element: <SamplePage />
+            path: '/Cars/:id',
+            element: <Cars />
         },
         {
-            path: '/annonce/:id',
-            element: <Annonce />
+            path: '/Clothings/:id',
+            element: <Clothings />
+        },
+        {
+            path: '/Computers&Accessories/:id',
+            element: <ComputersAccessories />
+        },
+        {
+            path: '/Cosmetics&Beauty/:id',
+            element: <CosmeticsBeauty />
+        },
+        {
+            path: '/Materials&Equipment/:id',
+            element: <MaterialsEquipment />
+        },
+        {
+            path: '/Phones/:id',
+            element: <Phones />
+        },
+        {
+            path: '/Realestate/:id',
+            element: <Realestate />
+        },
+        {
+            path: '/Travel/:id',
+            element: <Travel />
+        },
+        {
+            path: '/Vehicles/:id',
+            element: <Vehicles />
         }
     ]
 };
